@@ -32,9 +32,7 @@ return packer.startup(function(use)
   use("wbthomason/packer.nvim")
   -- using packer.nvim
   use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "nvim-tree/nvim-web-devicons" })
-  --use("tamton-aquib/staline.nvim")
   use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
-  -- use("lukas-reineke/indent-blankline.nvim")
   use("folke/which-key.nvim")
   use("p00f/nvim-ts-rainbow")
   use("lewis6991/impatient.nvim")
@@ -102,7 +100,7 @@ return packer.startup(function(use)
   use("hrsh7th/cmp-buffer") -- source for text in buffer
   use("hrsh7th/cmp-path") -- source for file system paths
   use("hrsh7th/cmp-cmdline")
-  
+
   -- snippets
   use("L3MON4D3/LuaSnip") -- snippet engine
   use("saadparwaiz1/cmp_luasnip") -- for autocompletion
@@ -137,6 +135,9 @@ return packer.startup(function(use)
 
   -- git integration
   use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
+  use({
+    "dinhhuy258/git.nvim",
+  })
 
   if packer_bootstrap then
     require("packer").sync()

@@ -24,7 +24,7 @@ local mappings = {
   --BUFFER
   b = {
     name = "BUFFERS",
-    c = { ":BufferLinePickClose<CR>", "Close Buffer" },
+    x = { ":BufferLinePickClose<CR>", "Close Buffer" },
     j = { ":BufferLinePick<CR>", "Jump Buffers" },
     C = { ":BDelete all<CR>", "Close All Buffers" },
     n = { ":new ", "New File" },
