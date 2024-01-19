@@ -20,7 +20,14 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
+      "onsails/lspkind.nvim",
       "saadparwaiz1/cmp_luasnip",
+      {
+        "Exafunction/codeium.nvim",
+        cmd = "Codeium",
+        build = ":Codeium Auth",
+        opts = {},
+      },
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
@@ -33,10 +40,26 @@ return {
       local cmp_autopairs = require("nvim-autopairs.completion.cmp")
       local luasnip = require("luasnip")
       local cmp = require("cmp")
-
+      local lspkind = require("lspkind")
+      table.insert(opts.sources, 1, {
+        name = "codeium",
+        group_index = 1,
+        priority = 100,
+      })
       opts.window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
+        documentation = {
+          border = "rounded",
+          winhighlight = "Normal:CmpNormal,FloatBorder:CmpBorder,CursorLine:CmpSelection,Search:None",
+          scrollbar = false,
+          col_offset = 0,
+        },
+        completion = {
+          border = "rounded",
+          winhighlight = "Normal:CmpNormal,FloatBorder:CmpBorder,CursorLine:CmpSelection,Search:None",
+          scrollbar = false,
+          col_offset = 0,
+          side_padding = 0,
+        },
       }
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
@@ -65,6 +88,19 @@ return {
         ["<C-k>"] = cmp.mapping.scroll_docs(-4),
         ["<C-j>"] = cmp.mapping.scroll_docs(4),
       })
+      opts.formatting = {
+        fields = { "kind", "abbr", "menu" },
+        format = function(entry, vim_item)
+          local kind = lspkind.cmp_format({
+            symbol_map = { Copilot = "", Codeium = "", Snippet = "", Keyword = "" },
+            preset = "codicons",
+            maxwidth = 40,
+          })(entry, vim_item)
+          local strings = vim.split(vim_item.kind, "%s+", { trimempty = true })
+          kind.kind = " " .. string.format(" %s │", strings[1], strings[2]) .. " "
+          return kind
+        end,
+      }
 
       cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,

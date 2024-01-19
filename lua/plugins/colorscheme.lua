@@ -14,6 +14,11 @@ return {
         hl.IlluminatedWordRead = { underline = true }
         hl.IlluminatedWordWrite = { underline = true }
 
+        hl.CmpSelection = {
+          bg = "#354449",
+          fg = "#A6B0AD",
+          -- bold = true,
+        }
         --Flash
         --
         hl.FlashLabel = {

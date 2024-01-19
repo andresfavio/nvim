@@ -78,6 +78,7 @@ return {
       }
       -- configure lualine with modified theme
       lualine.setup({
+
         options = {
           globalstatus = true,
           theme = my_lualine_theme,
@@ -120,17 +121,27 @@ return {
           lualine_x = {
           -- stylua: ignore
             --
-          {
-            function() return require("noice").api.status.command.get() end,
-            cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-            color = Util.ui.fg("Statement"),
-          },
+            --
+            {
+              function()
+                return require("noice").api.status.command.get()
+              end,
+              cond = function()
+                return package.loaded["noice"] and require("noice").api.status.command.has()
+              end,
+              color = Util.ui.fg("Statement"),
+            },
           -- stylua: ignore
-          {
-            function() return require("noice").api.status.mode.get() end,
-            cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-            color = Util.ui.fg("Constant"),
-          },
+            --
+            {
+              function()
+                return require("noice").api.status.mode.get()
+              end,
+              cond = function()
+                return package.loaded["noice"] and require("noice").api.status.mode.has()
+              end,
+              color = Util.ui.fg("Constant"),
+            },
           -- stylua: ignore
           {
             function() return "  " .. require("dap").status() end,
@@ -167,6 +178,8 @@ return {
               local icon = " " -- ícono de arch linux
               return icon .. " " .. fileformat:upper()
             end,
+
+            require("lazyvim.util").lualine.cmp_source("codeium"),
           },
 
           -- Y
