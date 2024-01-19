@@ -4,7 +4,8 @@
         "undefined-field",
         "undefined-doc-name",
         "undefined-global",
-        "inject-field"
+        "inject-field",
+        "different-requires"
     ],
     "diagnostics.globals": [
         "vim"

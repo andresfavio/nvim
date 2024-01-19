@@ -69,7 +69,7 @@ return {
         }
         hl.CursorLine = {
           -- bg = "#001419",
-          bg = "#001014",
+          bg = "#001317",
         }
 
         -- NeoTree
@@ -94,6 +94,9 @@ return {
         }
         hl.DashboardHeader = {
           fg = "#608ebf",
+        }
+        hl.NoiceMini = {
+          bg = "#00161a",
         }
       end,
     })
