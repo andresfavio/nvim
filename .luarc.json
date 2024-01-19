@@ -1,0 +1,12 @@
+{
+    "diagnostics.disable": [
+        "unused-local",
+        "undefined-field",
+        "undefined-doc-name",
+        "undefined-global",
+        "inject-field"
+    ],
+    "diagnostics.globals": [
+        "vim"
+    ]
+}
