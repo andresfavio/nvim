@@ -43,9 +43,17 @@ return {
       local lspkind = require("lspkind")
       table.insert(opts.sources, 1, {
         name = "codeium",
+        max_item_count = 2,
         group_index = 1,
         priority = 100,
       })
+      opts.confirm_opts = {
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = false,
+      }
+      opts.completion = {
+        completeopt = "menu,menuone",
+      }
       opts.window = {
         documentation = {
           border = "rounded",

@@ -1,4 +1,52 @@
 return {
+  -- {
+  --   "kevinhwang91/nvim-ufo",
+  --   event = { "BufReadPost", "BufNewFile" },
+  --   lazy = true,
+  --   dependencies = {
+  --     "kevinhwang91/promise-async",
+  --     {
+  --       "luukvbaal/statuscol.nvim",
+  --       config = function()
+  --         local builtin = require("statuscol.builtin")
+  --         require("statuscol").setup({
+  --           ft_ignore = { "neo-tree", "Outline" },
+  --           segments = {
+  --             { sign = { namespace = { "diagnostic*" } } },
+  --             { sign = { namespace = { "gitsign" } }, click = "v:lua.ScSa" },
+  --             { text = { builtin.lnumfunc, "  " }, click = "v:lua.ScLa" },
+  --             { text = { builtin.foldfunc, "  " }, click = "v:lua.ScFa" },
+  --           },
+  --         })
+  --       end,
+  --     },
+  --   },
+  --   config = function()
+  --     require("ufo").setup({
+  --       provider_selector = function()
+  --         return { "treesitter", "indent" }
+  --       end,
+  --     })
+  --   end,
+  -- },
+  {
+    "nvim-telescope/telescope-ui-select.nvim",
+    -- event = "VeryLazy",
+    config = function()
+      require("telescope").setup({
+        extensions = {
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown({
+              -- even more opts
+            }),
+          },
+        },
+      })
+      -- To get fzf loaded and working with telescope, you need to call
+      -- load_extension, somewhere after setup function:
+      require("telescope").load_extension("ui-select")
+    end,
+  },
   -- Incline
   {
     "b0o/incline.nvim",
