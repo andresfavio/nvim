@@ -5,9 +5,12 @@
         "undefined-doc-name",
         "undefined-global",
         "inject-field",
-        "different-requires"
+        "different-requires",
+        "need-check-nil"
     ],
     "diagnostics.globals": [
-        "vim"
+        "vim",
+        "live_server",
+        "stop_live_server"
     ]
 }

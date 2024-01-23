@@ -121,7 +121,9 @@ return {
   {
     "smjonas/inc-rename.nvim",
     cmd = "IncRename",
-    config = true,
+    config = function()
+      require("inc_rename").setup()
+    end,
   },
   -- Lsp-Saga
   {
@@ -433,6 +435,14 @@ return {
       })
 
       vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
+    end,
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
     end,
   },
 }

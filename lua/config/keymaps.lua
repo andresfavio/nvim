@@ -14,6 +14,36 @@ map("n", ".w", "<cmd>w<cr>", { desc = "Guardar Archivo", silent = true })
 map("n", ".q", "<cmd>q<cr>", { desc = "Salir de Archivo", silent = true })
 map("n", ".wq", "<cmd>wq<cr>", { desc = "Guardar y Salir", silent = true })
 map("n", "ne", "<cmd>Neotree float toggle<cr>", { desc = "Neotree", silent = true })
+map("n", "<leader>rn", ":IncRename ")
+-- Live-server
+-- Start
+function live_server()
+  local function command_exists(command)
+    local handle = io.popen("command -v " .. command)
+    local result = handle:read("*a")
+    handle:close()
+    return result ~= ""
+  end
+
+  if command_exists("live-server") then
+    local notify = require("notify")
+    notify("Starting live server...")
+    vim.cmd("silent !live-server . >/dev/null 2>&1 &")
+  else
+    local notify = require("notify")
+    notify("Live-server is not installed", "error")
+  end
+end
+
+map("n", ".ls", "<cmd>lua live_server()<cr>", { desc = "Live Server Start", silent = true })
+
+--Stop liver server
+function stop_live_server()
+  local notify = require("notify")
+  notify("Stopping live server")
+  vim.cmd("silent !pkill -f live-server")
+end
+map("n", ".lS", "<cmd>lua stop_live_server()<cr>", { desc = "Live Server Stop", silent = true })
 
 -- Lspsaga Terminal
 map({ "n", "t" }, "<A-1>", "<cmd>Lspsaga term_toggle<cr>", { desc = "Terminal Lspsaga", silent = true })
